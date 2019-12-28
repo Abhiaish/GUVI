@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>score table</title>
+</head>
+<style>
+     .A{
+            height: 369px;
+      width:500px;
+      
+            background-color: #d1f59f;
+           
+    }
+       .B{
+           height: 369px;
+           width: 500px;
+           margin-left: 50%;
+         
+           margin-top: -28%;
+           background-color: #e4bdf0;
+       }
+    </style>
+<body>
+  
+   <div class="A" >
+        over 1<input id="over1" type="text"><br>
+        over 2<input id="over2" type="text"><br>
+        over 3<input id="over3" type="text"><br>
+        score<input id="score" type="text"><br>
+        
+    </div>
+    <div class="B"> 
+         over 1<input id="over4" type="text"><br>
+        over 2<input id="over5" type="text"><br>
+        over 3<input id="over6" type="text"><br>
+        score<input id="score1" type="text"><br>
+        </div>
+        <div>Winner is
+            <input type="textarea" id="winner"></div>
+     <script>
+    document.getElementById('over1').value=localStorage.getItem("over1");
+          document.getElementById('over2').value=localStorage.getItem("over2");
+          document.getElementById('over3').value=localStorage.getItem("over3");
+         document.getElementById('score').value=localStorage.getItem("score");
+         document.getElementById('over4').value=localStorage.getItem("over4");
+          document.getElementById('over5').value=localStorage.getItem("over5");
+          document.getElementById('over6').value=localStorage.getItem("over6");
+         document.getElementById('score1').value=localStorage.getItem("score1");
+         
+         //WINNER check()
+         if(score>score1){
+             document.getElementById('winner').value="A";
+         }else{
+             document.getElementById('winner').value="B";
+         }
+    </script>
+</body>
+</html>

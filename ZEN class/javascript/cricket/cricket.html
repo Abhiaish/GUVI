@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .A{
+            height: 369px;
+      width:500px;
+      
+            background-color: #d1f59f;
+           
+    }
+       .B{
+           height: 369px;
+           width: 500px;
+           margin-left: 50%;
+         
+           margin-top: -28%;
+           background-color: #e4bdf0;
+       }
+    
+
+        
+    </style>
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+</head>
+<body>
+    <div class="A" >
+        RUN:<input id="scoreone" type="text"><br>
+        SCORE:<input id="total1" type="text"><br>
+        <button onclick="match1()">strike 1</button>
+        
+    </div>
+    <div class="B"> 
+        RUN:<input id="scoretwo" type="text"><br>
+         SCORE:<input id="total2" type="text"><br>
+        <button onclick="match2()">strike 2</button>
+        </div>
+    <a href="score.html"><button onclick="result3()" id="winner">Result</button></a>
+        <script>
+            let score=0;
+            count=0;
+             let over1=[];
+           let over2=[];
+           let over3=[];
+     function  match1(){
+          
+         
+         if(count<18){
+             count =count+1;
+           let run = Math.ceil(Math.random()*6);
+            score=score+run;
+             if(count<=6)
+                 over1.push(run);
+             if(count>6 && count <=12)
+                 over2.push(run);
+             if(count>12 && count <=18)
+                 over3.push(run);
+           
+           document.getElementById("scoreone").value=run;
+         document.getElementById("total1").value=score;
+           
+           
+            
+             }
+        }
+            function result(){
+                  
+            var a=over1;
+             localStorage.setItem("over1",a);
+            let b=over2;
+              localStorage.setItem("over2",b);  
+         let c=over3;
+                localStorage.setItem("over3",c);
+                let d=score;
+                localStorage.setItem("score",d);
+         console.log(a);
+               console.log(b);
+                 console.log(c);
+                console.log(d);
+
+            }
+     
+           let score1=0;
+            count1=0;
+             let over4=[];
+           let over5=[];
+           let over6=[];
+     function  match2(){
+          
+         
+         if(count1<18){
+             count1 =count1+1;
+           let run1 = Math.ceil(Math.random()*6);
+            score1=score1+run1;
+             if(count1<=6)
+                 over4.push(run1);
+             if(count1>6 && count1 <=12)
+                 over5.push(run1);
+             if(count1>12 && count1 <=18)
+                 over6.push(run1);
+           
+           document.getElementById("scoretwo").value=run1;
+         document.getElementById("total2").value=score1;
+           
+           
+            
+             }
+        }
+            function result1(){
+                  
+            var e=over4;
+             localStorage.setItem("over4",e);
+            let f=over5;
+              localStorage.setItem("over5",f);  
+         let g=over6;
+                localStorage.setItem("over6",g);
+                let h=score1;
+                localStorage.setItem("score1",h);
+         console.log(e);
+               console.log(f);
+                 console.log(g);
+                console.log(h);
+
+            }
+            function result3(){
+                result();
+            result1();
+            
+                    }
+        </script>
+    </body>
+</html>
