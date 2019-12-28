@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<link rel="stylesheet" href="style_latest.css" type="text/css"> 
+<title>MATHERAN TRIP</title>
+
+
+<style>
+
+#displayText
+{
+    width:413px;
+    height:auto;
+    background-color:#666666;
+    color:white;
+
+}
+#displayText1
+{
+    padding-left:5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<img src="images/img1.jpg" id="img1" onmouseover="clickEvent1()" onmouseout="imgRollout()" width="100" height="100">
+<img src="images/img2.jpg" id="img2" onmouseover="clickEvent2()" onmouseout="imgRollout()" width="100" height="100">
+<img src="images/img3.jpg" id="img3" onmouseover="clickEvent3()" onmouseout="imgRollout()" width="100" height="100">
+<img src="images/img4.jpg" id="img4" onmouseover="clickEvent4()" onmouseout="imgRollout()" width="100" height="100"><br/>
+
+<div id="displayText">
+<span id="displayText1"></span>
+</div>
+<script>
+var myData=new Array("Hi, How r u?", "Hey, whats up? Hey, whats up? Hey, whats up? Hey, whats up? Hey, whats up? Hey, whats up?", "Hello, whats going on?", "Hi friends")
+
+document.getElementById("displayText").style.visibility='hidden';
+
+
+function clickEvent1()
+{   
+    document.getElementById("displayText1").innerHTML=myData[0];
+    document.getElementById("displayText").style.visibility='visible';
+}
+
+function clickEvent2()
+{   
+    document.getElementById("displayText1").innerHTML=myData[1];
+    document.getElementById("displayText").style.visibility='visible';
+}
+
+function clickEvent3()
+{   
+    document.getElementById("displayText1").innerHTML=myData[2];
+    document.getElementById("displayText").style.visibility='visible';
+}
+
+function clickEvent4()
+{   
+    document.getElementById("displayText1").innerHTML=myData[3];
+    document.getElementById("displayText").style.visibility='visible';
+}
+
+function imgRollout()
+{
+    document.getElementById("displayText").style.visibility='hidden';
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Display the above data in 4 columns so that each has 2 rows of student details.
+</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 2px;
+  text-align: left;    
+}
+    .col-sm-3 {
+        padding:0px;
+    }
+</style>
+<body>
+   <div class="container-fluid">
+   <div class="row">
+    <div class="col-sm-3" style="background-color:#e6f3ff;">
+        
+           <table style="width:100%">
+  <tr>
+    <th rowspan="2">Id:1</th>
+    <td>stud:1</td>
+  </tr>
+  <tr>
+    <td>confirmed:false</td>
+  </tr>
+   <tr>
+    <th rowspan="2">Id:5</th>
+    <td>stud:5</td>
+  </tr>
+  <tr>
+    <td>confirmed:false</td>
+  </tr>
+  
+</table>
+        
+    </div>
+    
+    <div class="col-sm-3" style="background-color: #e6e6e6;">
+        
+     <table style="width:100%">
+  <tr>
+    <th rowspan="2">Id:2</th>
+    <td>stud:2</td>
+  </tr>
+  <tr>
+    <td>confirmed:true</td>
+  </tr>
+   <tr>
+    <th rowspan="2">Id:6</th>
+    <td>stud:6</td>
+  </tr>
+  <tr>
+    <td>confirmed:true</td>
+  </tr>
+  
+</table>
+        
+    </div>
+    <div class="col-sm-3" style="background-color:#e6f3ff;">
+          <table style="width:100%">
+  <tr>
+    <th rowspan="2">Id:3</th>
+    <td>stud:3</td>
+  </tr>
+  <tr>
+    <td>confirmed:false</td>
+  </tr>
+   <tr>
+    <th rowspan="2">Id:7</th>
+    <td>stud:7</td>
+  </tr>
+  <tr>
+    <td>confirmed:true</td>
+  </tr>
+  
+</table>
+   </div>
+    <div class="col-sm-3" style="background-color: #e6e6e6;">
+        <table style="width:100%">
+  <tr>
+    <th rowspan="2">Id:4</th>
+    <td>stud:4</td>
+  </tr>
+  <tr>
+    <td>confirmed:false</td>
+  </tr>
+   <tr>
+    <th rowspan="2">Id:8</th>
+    <td>stud:8</td>
+  </tr>
+  <tr>
+    <td>confirmed:true</td>
+  </tr>
+  
+</table>
+</div>
+       
+       </div>
+    </div>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

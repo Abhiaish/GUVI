@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reg and login form</title>
+</head>
+<body><div class="container">
+  <form>
+    <label for="usrname">Username</label>
+    <input type="text" id="usrname" name="usrname" pattern="/^[a-z]+[0-9a-zA-Z_\.]*@[a-z_]+\.[a-z]+$/" titile="must contain mailid and numbers" required><br>
+
+    <label for="psw">Password</label>
+    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain  8 or more characters" required><br>
+    
+    <input type="submit" value="Submit">
+    
+    
+  </form>
+</div>
+<script>
+    var number = document.getElementById("number");
+var length = document.getElementById("length");
+    
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+    myInput.onkeyup = function() {
+    
+     // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>

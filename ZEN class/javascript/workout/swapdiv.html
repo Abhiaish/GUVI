@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+<div id="first">
+
+ div 1
+   
+</div>
+<div id="second">
+ div 2
+
+</div>
+
+<button onclick="SwapClick()">Swap</button>
+
+
+
+<script type="text/javascript">
+function SwapClick()
+{
+  var d1 = document.getElementById('first').innerHTML;
+    document.getElementById('first').innerHTML=document.getElementById('second').innerHTML;
+   
+            document.getElementById('second').innerHTML=d1;             
+  
+
+  
+}
+
+
+</script>
+</body>
+</html>
+
