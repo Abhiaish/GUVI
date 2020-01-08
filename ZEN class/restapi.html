@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+.displayBox{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+}
+.card{
+    width: 18rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="row">
+       <div class="col" align-items="center">
+        <h2>Rest Api</h2><br>
+       </div>
+    </div>
+
+    <div class="row">
+
+        <div id="main" class="displayBox">
+            <div class="col-md-3">
+                
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+</body>
+
+<script>
+let countries =["Afghanistan","Bahamas","Cambodia","Denmark","Ecuador","Fiji","Gabon","Haiti","India","Jamaica","Kazakhstan","Latvia","Macao","Namibia","Korea (Democratic People's Republic of)","Norway","Oman","Pakistan","Qatar","Romania","Serbia","Taiwan","Uganda","Vanuatu","Yemen","Zimbabwe"];
+var request = new XMLHttpRequest();
+request.open('GET', "https://restcountries.eu/rest/v2/all");
+request.send();
+request.onload = function(){
+    var data = JSON.parse(this.response);
+    data.forEach(country => { 
+                  if(countries.indexOf(country.name) !== -1)
+                  { 
+                        const card = document.createElement('div');
+                            card.setAttribute('class', 'card');
+        
+                        const cardBody = document.createElement('div');
+                        cardBody.setAttribute('class','card-body');
+                            const countryName = document.createElement('h1');
+                        countryName.setAttribute('class','card-title');
+                            countryName.textContent = country.name;
+                    
+                        const desp = document.createElement('p');
+                        desp.setAttribute('class','card-text');
+                        desp.innerHTML = "Capital: "+country.capital+"<br>"+"Region: "+country.region+"<br>"+"Population: "+country.population;
+                        const flag = document.createElement('img');
+                        flag.setAttribute("class","card-img-top");
+                        flag.src = country.flag;
+                        
+                            card.appendChild(flag);
+                        cardBody.appendChild(countryName);
+                        cardBody.appendChild(desp);
+                        card.appendChild(cardBody);
+                        const dispBox = document.getElementById("main");
+                        dispBox.appendChild(card);
+                  }
+                });
+}
+</script>
+</html>
