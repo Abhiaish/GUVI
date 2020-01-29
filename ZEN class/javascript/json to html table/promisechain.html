@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+    table {
+   
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 5px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+   
+    </style>
+
+<body onload="myLoad()">
+<div id="loader">
+  <p>loading....</p> 
+ </div> 
+    
+    
+    
+     <div class="container-fluid">
+         <div class="row">
+        <div class="col-sm-6">
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Realm</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                   
+                </tr>
+            </thead>
+            <tbody id='data'>
+        </tbody>
+        </table>
+    </div>
+   
+        
+        <div class="col-sm-6">
+        <table class="table1 table-stripped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>cover</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+        <tbody id=data1>
+
+        </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+    <script>
+
+     var a= document.getElementById('loader');
+     setTimeout(function myLoad(){
+      a.style.display="none";
+      },1000);
+
+    fetch('https://5cdd0a92b22718001417c19d.mockapi.io/api/users')
+        .then((response) => {
+    return response.json()
+        }).then((data)=>{
+    console.log(data);
+    table(data);    
+   
+        }) 
+        .then(()=>{
+            return fetch('https://5cdd0a92b22718001417c19d.mockapi.io/api/books')
+
+        })
+        .then((data1)=>{
+            return data1.json()
+        }).then((data1)=>{
+            console.log(data1)
+            table1(data1);
+        })
+        .then(()=>{
+            return fetch('https://5cdd0a92b22718001417c19d.mockapi.io/api/doctors')
+        })
+        .then((data2)=>{
+            return data2.json()
+        }).then((data2)=>{
+            console.log(data2);
+           
+        })
+        .then(()=>{
+            return fetch('https://5cdd0a92b22718001417c19d.mockapi.io/api/products')
+        }).then((data3)=>{
+            return data3.json()
+        }).then((data3)=>{
+            console.log(data3);
+        })
+   
+        
+    //looping
+    function table(data){
+    if(data.length>0){
+        var temp="";
+    }
+        data.forEach(u => {
+            temp +="<tr>";
+                temp +="<td>"+u.id+"</td>";
+                temp +="<td>"+u.realm+"</td>";
+                temp +="<td>"+u.username+"</td>";
+                temp +="<td>"+u.password+"</td></tr>";
+                
+            
+        })
+        document.getElementById('data').innerHTML=temp;
+    
+
+    }
+ 
+ 
+    
+    //looping
+       
+        function table1(data1){
+    if(data1.length>0){
+        var temp1="";
+    }
+
+        data1.forEach(v =>{
+            temp1+="<tr>";
+            temp1+="<td>"+v.id+"</td>";
+            temp1+="<td>"+v.name+"</td>";
+            temp1+="<td>"+v.cover+"</td>";
+            temp1+="<td>"+v.price+"</td></tr>";
+
+        })
+    
+        document.getElementById('data1').innerHTML=temp1;
+        
+    }
+    
+    
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
