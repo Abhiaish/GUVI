@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pagination n promise</title>
+</head>
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<body>
+
+<div class="container">
+<table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Realm</th>
+      <th>Username</th>
+      <th>Password</th>
+    </tr>
+    <tbody id="table"></tbody>
+    </table>
+</div>
+<div id ="small"></div>
+<script>
+
+
+    let a= document.getElementById('small');
+    var obj={};
+    function listView(a,rows){
+    let pageCount=Math.ceil(100/rows);
+    for(let i=1;i<pageCount;i++){
+    let button=document.createElement('button');
+    button.innerText=i;
+    button.addEventListener('click',function(){
+    currentPage=i;
+        if(obj[i]==undefined){
+    fetch('https://5cdd0a92b22718001417c19d.mockapi.io/api/users?page='+currentPage+'&limit=5')
+    .then((response) =>{
+    return response.json();
+    })
+    .then((myJSON) =>{
+        obj[i]=myJSON;
+        console.log(myJSON);
+        paging(myJSON);
+    })
+        }else{
+            console.log("repeated:",obj[i]);
+        }
+    
+    
+    });
+    a.appendChild(button);
+    }   
+    }
+
+    var array1=[];
+    
+listView(a,5);
+function paging(myJSON){
+    array1.push(myJSON);
+    if(myJSON.length>0){
+        var temp="";
+    }
+        myJSON.forEach(u => {
+            temp +="<tr>";
+                temp +="<td>"+u.id+"</td>";
+                temp +="<td>"+u.realm+"</td>";
+                temp +="<td>"+u.username+"</td>";
+                temp +="<td>"+u.password+"</td></tr>";
+                
+            
+        })
+        document.getElementById('table').innerHTML=temp;
+        
+
+       
+    }
+  
+
+
+    console.log(array1);
+
+
+</script>
+
+</body>
+
+</html>
