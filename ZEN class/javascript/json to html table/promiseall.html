@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promiseall</title>
+</head>
+
+<style>
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+    table {
+   
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 5px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+   
+    </style>
+
+<body onload="myLoad()">
+<div id="loader">
+  <p>loading....</p> 
+ </div> 
+    
+    
+    
+     <div class="container-fluid">
+         <div class="row">
+        <div class="col-sm-6">
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Realm</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                   
+                </tr>
+            </thead>
+            <tbody id='data'>
+        </tbody>
+        </table>
+    </div>
+   
+        
+       <!---- <div class="col-sm-6">
+        <table class="table1 table-stripped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>cover</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+        <tbody id=data1>
+
+        </tbody>
+        </table>
+        </div>
+    </div>
+    </div>-->
+    <script>
+
+     var a= document.getElementById('loader');
+     setTimeout(function myLoad(){
+      a.style.display="none";
+      },1000);
+    
+    let users=fetch("https://5cdd0a92b22718001417c19d.mockapi.io/api/users")
+    let books=fetch("https://5cdd0a92b22718001417c19d.mockapi.io/api/books")   
+    let doctors=fetch("https://5cdd0a92b22718001417c19d.mockapi.io/api/doctors")
+    let products=fetch("https://5cdd0a92b22718001417c19d.mockapi.io/api/products")
+    Promise.all([users,books,doctors,products]).then(values=>{
+        return Promise.all(values.map(r=>r.json()));
+    }).then(values=>{
+        console.log(values);
+        table(values);
+       
+    });
+    function table(values){   
+        
+        
+            var temp="";
+            for(i=0;i<values[0].length;i++){
+            temp +="<tr>";
+             temp +="<td>"+values[0][i].id+"</td>";
+                temp +="<td>"+values[0][i].realm+"</td>";
+                temp +="<td>"+values[0][i].username+"</td>";
+                temp +="<td>"+values[0][i].password+"</td></tr>";
+            }
+            
+      
+        document.getElementById('data').innerHTML=temp;
+    
+
+    }
+ 
+
+    </script>
+</body>
+</html>
