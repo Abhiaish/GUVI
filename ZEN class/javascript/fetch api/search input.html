@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+
+  <title></title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400&display=swap" rel="stylesheet">
+<style>
+body{
+  font-family: 'Poppins', sans-serif;
+}
+#base {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  padding: 1.5rem 2.5rem;
+  margin: 0 0 2rem 0;
+  font-size: 1.5rem;
+  color: black;
+}
+
+img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+}
+
+p {
+  padding: 0 2.5rem 2.5rem;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 1rem;
+  background: white;
+  box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all .2s linear;
+}
+
+.card:hover {
+  box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+  transform: translate3D(0, -2px, 0);
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    flex: 1 1 calc(33% - 2rem);
+  }
+}
+
+
+
+</style>
+</head>
+
+<body>
+  <div>Search: <input id="search" type="text"></div>
+  <div id="match-list"></div>
+
+  <div id="base"></div>
+  
+  
+
+  <script>
+  let a = document.getElementById('base');
+let container = document.createElement('div');
+container.setAttribute('class', 'container');
+
+
+a.appendChild(container);
+
+var request = new XMLHttpRequest();
+request.open('GET', 'https://restcountries.eu/rest/v2/all', true);
+request.onload = function () {
+
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response);
+console.log(data);
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach(name => {
+      const card = document.createElement('div');
+      card.setAttribute('class', 'card');
+
+      const h1 = document.createElement('h1');
+      h1.textContent = name.name;
+	  	  
+	  const h2 = document.createElement('h2');
+      h2.textContent = name.nativeName;	
+		
+      const p = document.createElement('p');
+     
+      p.textContent = `${name.capital}...${name.population}`;
+		
+	  const img=document.createElement('img');
+      img.src=name.flag;
+      card.appendChild(img);
+      card.appendChild(p);
+     
+		
+      container.appendChild(card);
+      card.appendChild(h1);
+	  card.appendChild(h2);
+	  card.appendChild(p);
+    });
+  } 
+    
+    var search=document.getElementById('search');
+    
+search.addEventListener('input',()=>searchStates(search.value));
+const match = document.getElementById('match-list');
+    
+const searchStates =  searchText => {
+    const res = fetch('https://restcountries.eu/rest/v2/all');
+    var states =  res;
+
+  let matches = data.filter(data => {
+    const regex = new RegExp(`^${searchText}`,'gi');
+    return data.name.match(regex);
+  });
+
+  if(searchText.length === 0){
+      matches =[];
+      match.innerHTML='';
+  }
+  outputHtml(matches);
+};
+
+const outputHtml = matches =>{
+    if(matches.length>0){
+        const html = matches.map(match => `<div class="card card-body mb-1">
+        <h4> ${match.name} (${match.abbr})
+        <div class = "text-primary"> ${match.capital}</div></h4>      
+        </div>
+        `
+        )
+        .join('');
+
+        match.innerHTML = html;  
+    }
+       
+    
+}
+    
+    
+    
+    
+    
+}
+
+request.send();
+     
+
+  
+  </script>
+</body>
+
+</html>
