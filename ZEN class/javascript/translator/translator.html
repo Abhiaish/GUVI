@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    var text=document.createElement('textarea');
+    text.id='text1';
+    document.body.append(text);
+    var text2=document.createElement('textarea')
+    text2.id='text2';
+    document.body.append(text2);
+    text.setAttribute('onkeyup','suggestion()');
+    function suggestion(){
+        if(text.value ===" "){
+            console.log("empty:","");
+        }else{
+            var myText=document.getElementById('text1');
+            function debounce(suggestion,delay){
+                var timer;
+
+                return function(){
+                    clearInterval(timer);
+                    timer=setTimeout(()=>{
+                        suggestion();
+                    },delay);
+                };
+            }
+            myText.addEventListener('keydown',debounce(function(){
+                console.log(myText.value);
+            
+     fetch('https://cors-anywhere.herokuapp.com/xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=tamil&inString='+text.value)
+        .then((data) => {
+    return data.json()
+})
+    .then((data1) => {
+    console.log(data1);
+   console.log("itrans:",data1.itrans);
+   text2.value=data1.itrans;
+    });
+},5000))
+}
+    }
+    
+</script>
+</body>
+</html>
